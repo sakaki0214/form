@@ -1,0 +1,166 @@
+$break-small:768px;
+$break-medium:900px;
+$font:'Amatic SC', cursive;
+
+
+//header
+.page-header {
+  min-width:960 - 30px;
+  background:#efefef;
+  padding:10px 15px;
+  .page-header__heading {
+    font-size:20px;
+    @media(max-width:$break-small) {
+      font-size:17px;
+    }
+  }
+  @media(max-width:$break-medium) {
+    min-width: 0;
+  }
+}
+
+.page-header__inner {
+  width:930px;
+  margin:0 auto;
+  @media(max-width:$break-small) {
+    width:auto;
+    text-align:center;
+  }
+}
+
+.gnav {
+  li {
+    display: inline-block;
+  }
+}
+
+//contents
+.contents {
+  @include box-sizing(border-box);
+  background:#fff;
+  width:960px;
+  margin:0 auto 50px;
+  padding:20px;
+  &:after {
+    content:"";
+    display:table;
+    clear:both;
+  }
+  @media(max-width:$break-small) {
+    width:auto;
+    padding:1px 0;
+  }
+}
+
+.contents__main {
+  float:left;
+  width:645px;
+  padding:20px;
+  background:rgba(255,255,255, .2);
+  @media(max-width:$break-medium) {
+    float:none;
+    width:100%;
+    margin:0 0 25px;
+    @include box-sizing(border-box);
+  }
+}
+
+.heading-lv1 {
+  position:relative;
+  margin:0 0 20px;
+  padding:0 0 0 15px;
+  font-size:40px;
+  color:#333;
+  font-family: $font;
+  text-align: center;
+}
+.heading-lv2 {
+  position:relative;
+  margin:0 0 15px;
+  padding:0 0 0 15px;
+  font-size:18px;
+  color:#333;
+  &:before {
+    content:"";
+    display:block;
+    width:8px;
+    height:3px;
+    position:absolute;
+    top:13px;
+    left:0;
+    background:#666;
+  }
+}
+.heading-lv3 {
+  margin:0 0 10px;
+  font-size:16px;
+}
+
+.contents__side {
+  float:right;
+  width:240px;
+  padding:10px;
+  background:rgba(255,255,255, .2);
+  ul {
+    list-style-type:none;
+    padding-left:0;
+  }
+  @media(max-width:$break-medium) {
+    float:none;
+    width:100%;
+    @include box-sizing(border-box);
+  }
+}
+.bnr-side {
+  li {
+    margin:0 0 10px;
+  }
+}
+.btn-pagetop {
+  clear:both;
+  padding:30px 0 10px;
+  text-align:right;
+}
+.explanation {
+  @include box-sizing(border-box);
+  width: 960px;
+  padding: 0 20px;
+  margin: 0 auto 100px;
+  section {
+    margin: 0 0 30px;
+  }
+}
+
+
+// footer
+.page-footer {
+  min-width:960 - 30px;
+  padding:1px 15px;
+  background:#bfd0d2;
+  color:#000;
+  .cr {
+    text-align:center;
+  }
+  small {
+    font-size:80%;
+    color:#999;
+  }
+  @media(max-width:$break-medium) {
+    min-width: 0;
+  }
+}
+.page-footer__inner {
+  width:930px;
+  padding:20px 0;
+  margin:0 auto;
+  @media(max-width:$break-small) {
+    width:auto;
+    text-align:center;
+  }
+}
+.footer-nav {
+  margin:0 0 20px;
+  li {
+    display: inline-block;
+  }
+}

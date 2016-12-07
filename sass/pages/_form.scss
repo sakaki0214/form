@@ -1,0 +1,49 @@
+//
+// form
+//
+
+.form-parts {
+  &__lead_tx {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+  &__btn {
+    margin: 0 0 60px;
+    input[type="submit"] {
+      display: block;
+      @include experimental(appearance,none);
+      width: 400px;
+      height: 40px;
+      margin: 0 auto;
+      background: #fff;
+      color: #000;
+      text-align: center;
+      font-size: 16px;
+      line-height: 40px;
+      border: 1px solid #000;
+      &[disabled] {
+        @include opacity(.2);
+      }
+    }
+  }
+}
+.form-table {
+  width: 800px;
+  margin: 0 auto 20px;
+  th,td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  th {
+    text-align: left;
+  }
+  td {
+  }
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+  padding: 10px;
+  font-size: 16px;
+}

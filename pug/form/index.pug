@@ -1,0 +1,186 @@
+extends ../include/_base.pug
+block head-title
+  title form関連 EFO
+block head-font
+  link(href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet")
+
+block prepend body
+  div.contents
+    h2.heading-lv1 form parts
+    p.form-parts__lead_tx テキストがはいりますテキストがはいりますテキストがはいります。
+    form(action="#" method="post" data-validate)
+      table.form-table
+        tr.must
+          th: div 名前
+          td: input.form-parts__text.option__w468.js-form-text(type="text" name="name" placeholder="例）山田太郎" autofocus required)
+        tr.must
+          th: div 名前<br>（ひらがな）
+          td: input.form-parts__text.option__w468.js-form-text(type="text" name="name-kana" placeholder="例）やまだたろう" required)
+        tr.must
+          th: div メールアドレス
+          td
+            input.form-parts__text.option__w468.js-form-mail(type="email" name="email")
+            p 確認の為、同じアドレスをご入力ください
+            input.form-parts__text.option__w468.js-form-copy-mail(type="email" name="email")
+        //- tr.must
+        //-   th: div メールアドレス
+        //-   td
+        //-     input.form-parts__text.option__w200(type="email" name="email")
+        //-     span.form-parts__symbol @
+        //-     input.form-parts__text.option__w200(type="email" name="email")
+        //-     p 確認の為、同じアドレスをご入力ください
+        //-     input.form-parts__text.option__w200(type="email" name="email")
+        //-     span.form-parts__symbol @
+        //-     input.form-parts__text.option__w200(type="email" name="email")
+        tr.must
+          th: div パスワード
+          td
+            input.form-parts__text.option__w468.js-form-pw(type="password" name="email")
+            p 確認の為、同じパスワードをご入力ください
+            input.form-parts__text.option__w468.js-form-copy-pw(type="password" name="email")
+        tr.must
+          th: div 電話番号
+          td
+            input.form-parts__text.option__w100(type="tel" name="tel1")
+            span.form-parts__symbol -
+            input.form-parts__text.option__w100(type="tel" name="tel2")
+            span.form-parts__symbol -
+            input.form-parts__text.option__w100(type="tel" name="tel3")
+        tr.must
+          th: div 性別
+          td
+            ul.form-parts__list.option__inline
+              li
+                label
+                  input(type="radio" name="asdf" value="1")
+                  |男性
+              li
+                label
+                  input(type="radio" name="asdf" value="2")
+                  |女性
+        tr
+          th: div このサイトを知ったきっかけ
+          td
+            ul.form-parts__list.option__w100
+              li
+                label
+                  input(type="checkbox" name="qwer" value="1")
+                  |Twitter
+              li
+                label
+                  input(type="checkbox" name="qwer" value="2")
+                  |Facebook
+              li
+                label
+                  input(type="checkbox" name="qwer" value="3")
+                  |Instagram
+              li
+                label
+                  input(type="checkbox" name="qwer" value="4")
+                  |友人から
+              li
+                label
+                  input(type="checkbox" name="qwer" value="5")
+                  |Yahoo検索
+              li
+                label
+                  input(type="checkbox" name="qwer" value="6")
+                  |Google検索
+              li
+                label
+                  input(type="checkbox" name="qwer" value="7")
+                  |フリーペーパーペーパー
+              li
+                label
+                  input(type="checkbox" name="qwer" value="7")
+                  |雑誌
+              li
+                label
+                  input(type="checkbox" name="qwer" value="7")
+                  |新聞
+              li.option__others
+                label
+                  input.js-others(type="checkbox" name="qwer" value="8")
+                  |その他
+                  input.form-parts__text.option__w396.js-others-tx(type="text" name="" disabled)
+        tr
+          th: div このサイトを知ったきっかけ
+          td
+            ul.form-parts__list.option__w100
+              li
+                label
+                  input(type="radio" name="poiu" value="1")
+                  |Twitter
+              li
+                label
+                  input(type="radio" name="poiu" value="2")
+                  |Facebook
+              li
+                label
+                  input(type="radio" name="poiu" value="3")
+                  |Instagram
+              li
+                label
+                  input(type="radio" name="poiu" value="4")
+                  |友人から
+              li
+                label
+                  input(type="radio" name="poiu" value="5")
+                  |Yahoo検索
+              li
+                label
+                  input(type="radio" name="poiu" value="6")
+                  |Google検索
+              li
+                label
+                  input(type="radio" name="poiu" value="7")
+                  |フリーペーパー
+              li.option__others
+                label
+                  input.js-radio-on(type="radio" name="poiu" value="8")
+                  |その他
+                  input.form-parts__text.option__w396.js-radio-tx(type="text" name="jlie" disabled)
+        tr
+          th: div セレクトボックス
+          td
+            select(name="selectbox").form-parts__select
+              option(value="1") テキストがはいります
+              option(value="2") テキストがはいります
+              option(value="3") テキストがはいります
+              option(value="4") テキストがはいります
+              option(value="5") テキストがはいります
+        tr
+          th: div 備考
+          td
+            textarea.form-parts__textarea.option__w468(name="hjkl")
+
+
+
+      p.form-parts__btn: input.btn__submit(type="submit" value="確認画面へ" disabled)
+
+  section.explanation
+    h2.heading-lv1 form parts's explanation
+    section
+      h3.heading-lv2 対応ブラウザ
+      p IE9〜、Chrome、Safari、Firefox
+    section
+      h3.heading-lv2 text box
+      pre.code-sample
+        |input.form-parts__text.option__w468(type="text" name="name")
+    section
+      h3.heading-lv2 radio
+      pre.code-sample
+        |input(type="radio" name="poiu" value="8")
+    section
+      h3.heading-lv2 email
+      pre.code-sample
+        |input.form-parts__text.option__w468.js-form-mail(type="email" name="email")
+        |p 確認の為、同じアドレスをご入力ください
+        |input.form-parts__text.option__w468.js-form-copy-mail(type="email" name="email")
+      p ※.js-form-mail、.js-form-copy-mailをいれるとバリデーションがはいります。
+
+block js-link
+  script(src="//code.jquery.com/jquery-3.0.0.min.js")
+  script(src="//code.jquery.com/jquery-migrate-3.0.0.js")
+  //script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+  script(src="../js/common.js")

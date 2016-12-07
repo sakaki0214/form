@@ -1,0 +1,57 @@
+extends ../include/_base.pug
+block head-title
+  title form関連 EFO
+block head-font
+  link(href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet")
+
+block prepend body
+  div.contents
+    h2.heading-lv1 form parts jquery1.4.2
+    form(action="#" method="post" data-validate)
+      table.form-table
+        tr.must
+          th: div 名前
+          td: input.form-parts__text.js-form-text.js-ch-change.js-name#js-name-kana(type="text" name="name" placeholder="例）山田太郎" autofocus)
+        tr.must
+          th: div 名前<br>（カタカナ）
+          td: input.form-parts__text.js-form-text.js-ch-change.js-kana#js-furigana(type="text" name="name-kana" placeholder="例）ヤマダタロウ")
+        tr.must
+          th: div 住所
+          td
+            |〒
+            input(type="text" name="" class="js-automove3" placeholder="例）111" maxlength="3")
+            | -
+            input(type="text" name="" class="js-automove-after" placeholder="例）2222")
+            br
+            |都道府県
+            input(type="text" name="" placeholder="例）東京都")
+            input(type="text" name="" placeholder="例）中野区")
+            br
+            |町名・番地・マンション名
+            input(type="text" name="" placeholder="例）本町本町1-1-1 ほげハイツ101")
+        tr.must
+          th
+            div
+              |連絡方法
+              br
+              span ※どちらか必ず
+          td
+            |メール
+            input.form-parts__text.option__w468.js-form-mail(type="email" name="email" placeholder="例）hoge@hoge.jp")
+            br
+            |電話
+            input.form-parts__text.option__w100(type="tel" name="tel" placeholder="例）00-0000-0000")
+            select
+              option 特に指定しない
+              option 9:00〜12:00
+              option 12:00〜15:00
+              option 15:00〜18:00
+              option 18:00〜21:00
+
+      p.form-parts__btn: input.btn__submit(type="submit" value="次へ")
+
+block js-link
+  script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")
+  //-script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+  script(src="../js/jquery.autoKana.js")
+  script(src="../js/form2.js")

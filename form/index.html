@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>form関連 EFO</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+  </head>
+  <body>
+    <div class="contents">
+      <h2 class="heading-lv1">form parts</h2>
+      <p class="form-parts__lead_tx">テキストがはいりますテキストがはいりますテキストがはいります。</p>
+      <form action="#" method="post" data-validate>
+        <table class="form-table">
+          <tr class="must">
+            <th>
+              <div>名前</div>
+            </th>
+            <td>
+              <input class="form-parts__text option__w468 js-form-text" type="text" name="name" placeholder="例）山田太郎" autofocus required>
+            </td>
+          </tr>
+          <tr class="must">
+            <th>
+              <div>名前<br>（ひらがな）</div>
+            </th>
+            <td>
+              <input class="form-parts__text option__w468 js-form-text" type="text" name="name-kana" placeholder="例）やまだたろう" required>
+            </td>
+          </tr>
+          <tr class="must">
+            <th>
+              <div>メールアドレス</div>
+            </th>
+            <td>
+              <input class="form-parts__text option__w468 js-form-mail" type="email" name="email">
+              <p>確認の為、同じアドレスをご入力ください</p>
+              <input class="form-parts__text option__w468 js-form-copy-mail" type="email" name="email">
+            </td>
+          </tr>
+          <tr class="must">
+            <th>
+              <div>パスワード</div>
+            </th>
+            <td>
+              <input class="form-parts__text option__w468 js-form-pw" type="password" name="email">
+              <p>確認の為、同じパスワードをご入力ください</p>
+              <input class="form-parts__text option__w468 js-form-copy-pw" type="password" name="email">
+            </td>
+          </tr>
+          <tr class="must">
+            <th>
+              <div>電話番号</div>
+            </th>
+            <td>
+              <input class="form-parts__text option__w100" type="tel" name="tel1"><span class="form-parts__symbol">-</span>
+              <input class="form-parts__text option__w100" type="tel" name="tel2"><span class="form-parts__symbol">-</span>
+              <input class="form-parts__text option__w100" type="tel" name="tel3">
+            </td>
+          </tr>
+          <tr class="must">
+            <th>
+              <div>性別</div>
+            </th>
+            <td>
+              <ul class="form-parts__list option__inline">
+                <li>
+                  <label>
+                    <input type="radio" name="asdf" value="1">男性
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" name="asdf" value="2">女性
+                  </label>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div>このサイトを知ったきっかけ</div>
+            </th>
+            <td>
+              <ul class="form-parts__list option__w100">
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="1">Twitter
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="2">Facebook
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="3">Instagram
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="4">友人から
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="5">Yahoo検索
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="6">Google検索
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="7">フリーペーパーペーパー
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="7">雑誌
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="checkbox" name="qwer" value="7">新聞
+                  </label>
+                </li>
+                <li class="option__others">
+                  <label>
+                    <input class="js-others" type="checkbox" name="qwer" value="8">その他
+                    <input class="form-parts__text option__w396 js-others-tx" type="text" name="" disabled>
+                  </label>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div>このサイトを知ったきっかけ</div>
+            </th>
+            <td>
+              <ul class="form-parts__list option__w100">
+                <li>
+                  <label>
+                    <input type="radio" name="poiu" value="1">Twitter
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" name="poiu" value="2">Facebook
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" name="poiu" value="3">Instagram
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" name="poiu" value="4">友人から
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" name="poiu" value="5">Yahoo検索
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" name="poiu" value="6">Google検索
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input type="radio" name="poiu" value="7">フリーペーパー
+                  </label>
+                </li>
+                <li class="option__others">
+                  <label>
+                    <input class="js-radio-on" type="radio" name="poiu" value="8">その他
+                    <input class="form-parts__text option__w396 js-radio-tx" type="text" name="jlie" disabled>
+                  </label>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div>セレクトボックス</div>
+            </th>
+            <td>
+              <select class="form-parts__select" name="selectbox">
+                <option value="1">テキストがはいります</option>
+                <option value="2">テキストがはいります</option>
+                <option value="3">テキストがはいります</option>
+                <option value="4">テキストがはいります</option>
+                <option value="5">テキストがはいります</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div>備考</div>
+            </th>
+            <td>
+              <textarea class="form-parts__textarea option__w468" name="hjkl"></textarea>
+            </td>
+          </tr>
+        </table>
+        <p class="form-parts__btn">
+          <input class="btn__submit" type="submit" value="確認画面へ" disabled>
+        </p>
+      </form>
+    </div>
+    <section class="explanation">
+      <h2 class="heading-lv1">form parts's explanation</h2>
+      <section>
+        <h3 class="heading-lv2">対応ブラウザ</h3>
+        <p>IE9〜、Chrome、Safari、Firefox</p>
+      </section>
+      <section>
+        <h3 class="heading-lv2">text box</h3>
+        <pre class="code-sample">input.form-parts__text.option__w468(type="text" name="name")</pre>
+      </section>
+      <section>
+        <h3 class="heading-lv2">radio</h3>
+        <pre class="code-sample">input(type="radio" name="poiu" value="8")</pre>
+      </section>
+      <section>
+        <h3 class="heading-lv2">email</h3>
+        <pre class="code-sample">input.form-parts__text.option__w468.js-form-mail(type="email" name="email")
+p 確認の為、同じアドレスをご入力ください
+input.form-parts__text.option__w468.js-form-copy-mail(type="email" name="email")</pre>
+        <p>※.js-form-mail、.js-form-copy-mailをいれるとバリデーションがはいります。</p>
+      </section>
+    </section>
+    <script src="//code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-3.0.0.js"></script>
+    <!--script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")-->
+    <script src="../js/common.js"></script>
+  </body>
+</html>
