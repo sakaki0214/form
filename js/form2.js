@@ -111,7 +111,7 @@ $(function() {
     charactersChange($(this));
     $(".js-ch-change").each(function(){
       $(this).val($(this).val().replace(/　/g,' '));
-      $(this).val($(this).val().replace(/ー/g,'-'));
+      $(this).val($(this).val().replace(/ーー━‐―－–−-/g,'-'));
     });
   });
 
@@ -301,6 +301,10 @@ $(function() {
   //- 電話番号
   $('.js-tel').blur(function(){
     charactersChange($(this));
+    $(".js-ch-change").each(function(){
+      $(this).val($(this).val().replace(/　/g,' '));
+      $(this).val($(this).val().replace(/ーー━‐―－–−-/g,'-'));
+    });
     if($(this).val() == '') {
       console.log('tel kara');
       error1($(this));
