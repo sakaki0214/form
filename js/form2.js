@@ -91,14 +91,23 @@ $(function() {
           console.log("errorリムーブしませんそのまま");
         } else {
           console.log("error1追加");
-          $(this).next('.error__tx').remove();
-          $(this).after('<p class="error__tx error1">' + errorTx1 + '</p>');
+          error1($(this));
         }
       }
   });
 
+  //- errorTx1が表示されているときにテキストが入力された場合
+  //- errorTx1を消す
+  $textbox.keyup(function(){
+    if($(this).next('p').hasClass('error1')){
+      console.log("入力中だからエラーを消す");
+      $(this).next('.error1').remove();
+    }
+  });
+
   // 英数記号・スペース・ハイフン 全角半角変換
   $(".js-ch-change").blur(function(){
+    console.log('全角を半角にするよ');
     charactersChange($(this));
     $(".js-ch-change").each(function(){
       $(this).val($(this).val().replace(/　/g,' '));
@@ -119,7 +128,7 @@ $(function() {
   $('.js-name').blur(function(){
     // if($(this).val().match(/^[０-９0-9!-/:-@¥[-`{-~]+$/)) { //数字と記号が入力された場合
     if($(this).val().match(/[０-９0-9!"#$%&'()\*\+\.,\/:;<=>?@\[\\\]^_`{|}~]/g)) { //数字と記号が入力された場合
-      $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
+      error2($(this));
     } else {
       return false;
     }
@@ -163,7 +172,7 @@ $(function() {
 
     if($(this).val().match(/[Ａ-Ｚａ-ｚA-Za-z０-９0-9!"#$%&'()\*\+\.,\/:;<=>?@\[\\\]^_`{|}~]/g)) { //英数と記号
       console.log('英数と記号 error2追加');
-      $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
+      error2($(this));
     }
     else if($(this).val().match(/[\u3041-\u3096\u30A1-\u30F6]/g)) { //ひらがな、カタカナ、ハイフン、スペースの場合
       console.log("ひらがな、カタカナ");
@@ -172,7 +181,7 @@ $(function() {
       return false;
     }  else { //それ以外はエラー
       console.log('それ以外error2追加')
-      $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
+      error2($(this));
     }
 
 
@@ -208,26 +217,114 @@ $(function() {
 
   //-mail
   $mail.blur(function(){
-    if($(this).val().match(/.+@.+\..+/)){
+    if($(this).val() == '') {
+      console.log('mail kara');
+      error1($(this));
+    } else if($(this).val().match(/^[A-Za-z0-9]+[\w\.-]+@[\w\.-]+\.\w{2,}$/)){
+       console.log('メアドの形式正しい');
       $(this).next('.error__tx').remove();
     } else {
-      if($(this).next('p').hasClass('error__tx')){
-        return false;
-      } else {
-        $(this).after('<p class="error__tx">' + errorTx1 + '</p>');
-      }
+       console.log('メアドの形式NG');
+      error2($(this));
+      // $(this).next('.error__tx').remove();
+      // $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
+
+      // if($(this).next('p').hasClass('error__tx')){
+      //   return false;
+      // } else {
+      //   $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
+      // }
     }
   });
+
 
   //- 郵便番号
   var $pNumber1 = $('.js-automove3');
   var $pNumber2 = $('.js-automove-after');
 
   $pNumber1.keyup(function(){
-    if($(this).val().length == 3) {
+    charactersChange($(this));
+    if($(this).val().match(/\d{3}/g)) {
       $pNumber2.focus();
     }
   });
+  $pNumber2.focus(function(){
+    if($pNumber1.val().match(/\d{3}/g)){
+      $pNumber1.next('.error__tx').remove();
+    }
+  });
+  $pNumber1.blur(function(){
+    if($(this).val() == '') {
+      error1($(this));
+    } else if($(this).val().match(/\d{3}/g)) {
+      console.log('数字3文字');
+      $(this).next('.error__tx').remove();
+      return false;
+    } else {
+      console.log('数字3文字');
+      error2($(this));
+    }
+  });
+  $pNumber2.blur(function(){
+    if($(this).val().match(/\d{4}/g)) {
+      console.log('数字４文字');
+      $(this).next('.error__tx').remove();
+      return false;
+    } else {
+      console.log('not 数字４文字');
+      error2($(this));
+    }
+  });
+
+  //- 住所
+  var $address1 = $('.js-address1');
+  var $address2 = $('.js-address2');
+  var $address3 = $('.js-address3');
+
+  $address1.blur(function(){
+    if($(this).val().match(/[^ぁ-んー一-龠]/g)){
+      error2($(this));
+    } else {
+      return false;
+    }
+  });
+  $address2.blur(function(){
+    var str = $(this).val();
+    $(this).val(convertStr(str));
+    if($(this).val().match(/[^ぁ-んァ-ンー一-龠]/g)){
+      error2($(this));
+    } else {
+      return false;
+    }
+  });
+
+  //- 電話番号
+  $('.js-tel').blur(function(){
+    charactersChange($(this));
+    if($(this).val() == '') {
+      console.log('tel kara');
+      error1($(this));
+    } else if($(this).val().match(/^\d{2,5}-\d{1,4}-\d{4}$/)) { //数字とハイフン
+      console.log('telOK')
+      $(this).next('.error__tx').remove();
+    } else { // 数字、ハイフン、空白以外
+      console.log('tel 数字とハイフンNG')
+      // $(this).next('.error__tx').remove();
+      // $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
+      error2($(this));
+    }
+  })
 
 
+  //- error1
+  function error1(ele) {
+    ele.next('.error__tx').remove();
+    ele.after('<p class="error__tx error1">' + errorTx1 + '</p>');
+  }
+
+  //- error2
+  function error2(ele) {
+    ele.next('.error__tx').remove();
+    ele.after('<p class="error__tx error2">' + errorTx2 + '</p>');
+  }
 });

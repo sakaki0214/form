@@ -20,7 +20,7 @@
               <div>名前</div>
             </th>
             <td>
-              <input class="form-parts__text js-form-text js-ch-change js-name" id="js-name-kana" type="text" name="name" placeholder="例）山田太郎" autofocus>
+              <input class="form-parts__text js-form-text js-ch-change js-name" id="js-name-kana" type="text" name="name" placeholder="例）山田太郎">
             </td>
           </tr>
           <tr class="must">
@@ -36,11 +36,11 @@
               <div>住所</div>
             </th>
             <td>〒
-              <input class="js-automove3" type="text" name="" placeholder="例）111" maxlength="3">-
-              <input class="js-automove-after" type="text" name="" placeholder="例）2222"><br>都道府県
-              <input type="text" name="" placeholder="例）東京都">
-              <input type="text" name="" placeholder="例）中野区"><br>町名・番地・マンション名
-              <input type="text" name="" placeholder="例）本町本町1-1-1 ほげハイツ101">
+              <input class="js-automove3 js-ch-change" id="e011201" type="text" name="" placeholder="例）111" maxlength="3">-
+              <input class="js-automove-after js-ch-change" id="e011202" type="text" name="" placeholder="例）2222" maxlength="4"><br><span class="btn-address">住所検索</span>都道府県
+              <input class="js-form-text js-address1" type="text" name="" placeholder="例）東京都">
+              <input class="js-form-text js-address2" type="text" name="" placeholder="例）中野区"><br>町名・番地・マンション名
+              <input class="js-form-text js-address3 js-ch-change" type="text" name="" placeholder="例）本町本町1-1-1 ほげハイツ101">
             </td>
           </tr>
           <tr class="must">
@@ -48,8 +48,8 @@
               <div>連絡方法<br><span>※どちらか必ず</span></div>
             </th>
             <td>メール
-              <input class="form-parts__text option__w468 js-form-mail" type="email" name="email" placeholder="例）hoge@hoge.jp"><br>電話
-              <input class="form-parts__text option__w100" type="tel" name="tel" placeholder="例）00-0000-0000">
+              <input class="js-ch-change js-form-mail" type="email" name="email" placeholder="例）hoge@hoge.jp"><br>電話
+              <input class="js-tel" type="tel" name="tel" placeholder="例）00-0000-0000">
               <select>
                 <option>特に指定しない</option>
                 <option>9:00〜12:00</option>

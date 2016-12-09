@@ -11,7 +11,7 @@ block prepend body
       table.form-table
         tr.must
           th: div 名前
-          td: input.form-parts__text.js-form-text.js-ch-change.js-name#js-name-kana(type="text" name="name" placeholder="例）山田太郎" autofocus)
+          td: input.form-parts__text.js-form-text.js-ch-change.js-name#js-name-kana(type="text" name="name" placeholder="例）山田太郎")
         tr.must
           th: div 名前<br>（カタカナ）
           td: input.form-parts__text.js-form-text.js-ch-change.js-kana#js-furigana(type="text" name="name-kana" placeholder="例）ヤマダタロウ")
@@ -19,16 +19,17 @@ block prepend body
           th: div 住所
           td
             |〒
-            input(type="text" name="" class="js-automove3" placeholder="例）111" maxlength="3")
+            input.js-automove3.js-ch-change#e011201(type="text" name="" placeholder="例）111" maxlength="3")
             | -
-            input(type="text" name="" class="js-automove-after" placeholder="例）2222")
+            input.js-automove-after.js-ch-change#e011202(type="text" name="" placeholder="例）2222" maxlength="4")
             br
+            span.btn-address 住所検索
             |都道府県
-            input(type="text" name="" placeholder="例）東京都")
-            input(type="text" name="" placeholder="例）中野区")
+            input.js-form-text.js-address1(type="text" name="" placeholder="例）東京都")
+            input.js-form-text.js-address2(type="text" name="" placeholder="例）中野区")
             br
             |町名・番地・マンション名
-            input(type="text" name="" placeholder="例）本町本町1-1-1 ほげハイツ101")
+            input.js-form-text.js-address3.js-ch-change(type="text" name="" placeholder="例）本町本町1-1-1 ほげハイツ101")
         tr.must
           th
             div
@@ -37,10 +38,10 @@ block prepend body
               span ※どちらか必ず
           td
             |メール
-            input.form-parts__text.option__w468.js-form-mail(type="email" name="email" placeholder="例）hoge@hoge.jp")
+            input.js-ch-change.js-form-mail(type="email" name="email" placeholder="例）hoge@hoge.jp")
             br
             |電話
-            input.form-parts__text.option__w100(type="tel" name="tel" placeholder="例）00-0000-0000")
+            input.js-tel(type="tel" name="tel" placeholder="例）00-0000-0000")
             select
               option 特に指定しない
               option 9:00〜12:00
