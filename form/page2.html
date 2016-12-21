@@ -3,70 +3,262 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>form関連 EFO</title>
+    <title>form（jQuery ver1.4.2）</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/form2.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
   </head>
   <body>
     <div class="contents">
-      <h2 class="heading-lv1">form parts jquery1.4.2</h2>
-      <form action="#" method="post" data-validate>
-        <table class="form-table">
-          <tr class="must">
-            <th>
-              <div>名前</div>
-            </th>
-            <td>
-              <input class="form-parts__text js-form-text js-ch-change js-name" id="js-name-kana" type="text" name="name" placeholder="例）山田太郎">
-            </td>
-          </tr>
-          <tr class="must">
-            <th>
-              <div>名前<br>（カタカナ）</div>
-            </th>
-            <td>
-              <input class="form-parts__text js-form-text js-ch-change js-kana" id="js-furigana" type="text" name="name-kana" placeholder="例）ヤマダタロウ">
-            </td>
-          </tr>
-          <tr class="must">
-            <th>
-              <div>住所</div>
-            </th>
-            <td>〒
-              <input class="js-automove3 js-ch-change" id="e011201" type="text" name="" placeholder="例）111" maxlength="3">-
-              <input class="js-automove-after js-ch-change" id="e011202" type="text" name="" placeholder="例）2222" maxlength="4"><br><span class="btn-address">住所検索</span>都道府県
-              <input class="js-form-text js-address1" type="text" name="" placeholder="例）東京都">
-              <input class="js-form-text js-address2" type="text" name="" placeholder="例）中野区"><br>町名・番地・マンション名
-              <input class="js-form-text js-address3 js-ch-change" type="text" name="" placeholder="例）本町本町1-1-1 ほげハイツ101">
-            </td>
-          </tr>
-          <tr class="must">
-            <th>
-              <div>連絡方法<br><span>※どちらか必ず</span></div>
-            </th>
-            <td>メール
-              <input class="js-ch-change js-form-mail" type="email" name="email" placeholder="例）hoge@hoge.jp"><br>電話
-              <input class="js-tel" type="tel" name="tel" placeholder="例）00-0000-0000">
-              <select>
-                <option>特に指定しない</option>
-                <option>9:00〜12:00</option>
-                <option>12:00〜15:00</option>
-                <option>15:00〜18:00</option>
-                <option>18:00〜21:00</option>
-              </select>
-            </td>
-          </tr>
-        </table>
-        <p class="form-parts__btn">
-          <input class="btn__submit" type="submit" value="次へ">
-        </p>
-      </form>
+        <h2 class="fm__heading">
+          form（jQuery ver1.4.2）
+        </h2>
+
+        <form method="post" action="confirm.html" name="webMemberForm">
+          <table class="fm-table">
+            <tr>
+              <th class="must">
+                <div><label for="js-name-kana">名前（漢字）</label></div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <div class="fm-item__parts">
+                    <input class="js-ch-change js-name" id="js-name-kana" type="text" name="name" placeholder="例）山田 太郎">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div><label for="js-furigana">名前（カナ）</label></div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <div class="fm-item__parts">
+                    <input class="js-ch-change js-kana" id="js-furigana" type="text" name="name-kana" placeholder="例）ヤマダ タロウ">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div><label for="birth">生年月日</label></div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <div class="fm-item__parts">
+                    <div class="fm-item__parts_birth">
+                      <input class="fm-item__input_num4 js-birth1" id="birth" type="tel" name="" placeholder="例）1997" maxlength="4">
+                    </div>
+                    <span class="unit">年</span>
+                    <br>
+                    <div class="fm-item__parts_birth second">
+                      <input class="fm-item__input_num2 js-birth2" type="tel" name="" placeholder="例）12" maxlength="2">
+                    </div>
+                    <span class="unit">月</span>
+                    <div class="fm-item__parts_birth third">
+                      <input class="fm-item__input_num2 js-birth3" type="tel" name="" placeholder="例）30" maxlength="2">
+                    </div>
+                    <span class="unit">日</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div>性別</div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <ul class="sex">
+                    <li>
+                      <label>
+                        <input type="radio" name="asdfg" value="">男性
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" name="asdfg" value="">女性
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div>住所（都道府県）</div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <div class="fm-item__parts_address">
+                    <input class="fm-item__input_ken js-form-text js-address1" id="todoufuken" type="text" name="" placeholder="例）東京都">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div>住所（市区郡）</div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <div class="fm-item__parts_address second">
+                    <input class="fm-item__input_ku js-form-text js-address2" id="shi" type="text" name="" placeholder="例）新宿区">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div>住所（それ以降）</div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <div class="fm-item__parts_address third">
+                    <input class="js-form-text js-address3 js-ch-change" id="machi" type="text" name="" placeholder="例）新宿1-1-1 ◯◯ハイツ 404">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div>職業</div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <ul class="fm-item__list job">
+                    <li>
+                      <label>
+                        <input type="radio" name="zxcvb" value="">会社役員
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" name="zxcvb" value="">会社員
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" name="zxcvb" value="">フリーター
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" name="zxcvb" value="">無職
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div>行ってみたい地域 <span>※複数選択可</span></div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <ul class="fm-item__list area">
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="">北海道
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="" checked>東北
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="">関東
+                      </label>
+                    </li>
+                    <li>
+                      <label class="ls-s">
+                        <input type="checkbox" name="yuiop" value="">甲信越・北陸
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="">東海
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="">関西
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="">四国
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="">中国
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="">九州・沖縄
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" name="yuiop" value="">全エリア
+                      </label>
+                    </li>
+                  </ul>
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div><label for="tel">電話番号</label></div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <div class="fm-item__parts">
+                    <div class="fm-item__parts_tel">
+                      <input class="fm-item__input_num4 js-tel1" id="tel" type="tel" name="" placeholder="例）03" maxlength="5">
+                    </div>
+                    <span class="unit">ー</span>
+                    <br>
+                    <div class="fm-item__parts_tel second">
+                      <input class="fm-item__input_num4 js-tel2" type="tel" name="" placeholder="例）1111" maxlength="4">
+                    </div>
+                    <span class="unit">ー</span>
+                    <div class="fm-item__parts_tel third">
+                      <input class="fm-item__input_num4 js-tel3" type="tel" name="" placeholder="例）2222" maxlength="4">
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="must">
+                <div><label for="mail">メールアドレス</label></div>
+              </th>
+              <td>
+                <div class="fm-item">
+                  <div class="fm-item__parts">
+                    <input class="fm-item__input_email js-ch-change js-form-mail" id="mail" type="email" name="email" placeholder="例）xxxx@xx.xx">
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <p class="nk-parts__btn">
+            <input class="fm-parts__btn_submit" type="button" value="次へ" formnovalidate>
+          </p>
+        </form>
+
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script src="../js/jquery.autoKana.js"></script>
     <script src="../js/form2.js"></script>
   </body>
 </html>

@@ -1,54 +1,4 @@
-// font (code grid -> https://app.codegrid.net/entry/2016-choosing-fonts-3)
-(function () {
-  var ua = window.navigator.userAgent;
-  var os, version, matched;
-
-  if (matched = ua.match(/Windows NT (\d+\.\d+)/)) {
-    os = 'Windows';
-    switch (matched[1]) {
-      case '5.1':
-      case '5.2':
-        version = 'XP';
-        break;
-      case '6.0':
-        version = 'Vista';
-        break;
-      case '6.1':
-        version = '7';
-        break;
-      case '6.2':
-        version = '8';
-        break;
-      case '6.3':
-        version = '8.1';
-        break;
-      case '10.0':
-        version = '10';
-        break;
-    }
-  }
-  else if (matched = ua.match(/Mac OS X (\d+[_.]\d+)/)) {
-    os = 'Mac OS';
-    version = matched[1].replace(/_/g, '.');
-  }
-  else if (matched = ua.match(/iPhone OS (\d_\d)/) || ua.match(/iPad; CPU OS (\d_\d)/)) {
-    os = 'iOS';
-    version = matched[1].replace(/_/g, '.');
-  }
-  else if (matched = ua.match(/Android (\d\.\d)/)) {
-    os = 'Android';
-    version = matched[1];
-  }
-
-  document.body.setAttribute('data-os', os + ' ' + version);
-})();
-
-
-
-
-
-
-$(function() {
+$(function(){
 
   //smooth scroll
   $('a[href^="#"]').click(function() {
@@ -60,58 +10,299 @@ $(function() {
     return false;
   });
 
+  // count
+    var allCount01 = 0;
+    var allCount02 = 0;
+    var allCount03 = 0;
+    var allCount04 = 0;
+    var allCount05 = 0;
+    var allCount06 = 0;
+    var allCount07 = 0;
+    var allCount08 = 0;
+    var allCount09 = 0;
+    var allCount10 = 0;
+    var allCount11 = 0;
+    var allCount12 = 0;
+    var allCount13 = 0;
+    var allCount14 = 0;
+    var allCount15 = 0;
 
-
-
-
-  //
-  //form-validation
-  //
-  var $textbox = $('.js-form-text');
-  var errorTx1 = '入力がされていません';
-  var errorTx2 = '入力内容が正しくありません';
-  var $mail = $('.js-form-mail');
-  var $copyMail = $('.js-form-copy-mail');
-  var mailVal = $mail.val();
-
-
-  //-submit
-
-
-  //-テキスト入力欄がカラかどうか
-  $textbox.blur(function(){
+  // allCount01：名前（漢字）-----------------------------------
+  $('.js-name').blur(function(){
     if($(this).val().match(/.+/)){
-        console.log("errorリムーブします");
         $(this).next('.error__tx').remove();
+        allCount01 = 1;
       } else {
-        // console.log($(this));
-        // $(this).next('.error__tx').remove();
-        // $(this).after('<p class="error__tx">' + errorTx1 + '</p>');
+        allCount01 = 0;
         if($(this).next('p').hasClass('error1')){
-          console.log("errorリムーブしませんそのまま");
         } else {
-          console.log("error1追加");
           error1($(this));
         }
       }
   });
 
-  //- errorTx1が表示されているときにテキストが入力された場合
-  //- errorTx1を消す
-  $textbox.keyup(function(){
-    if($(this).next('p').hasClass('error1')){
-      console.log("入力中だからエラーを消す");
-      $(this).next('.error1').remove();
+  // allCount02：名前（カナ）-----------------------------------
+  $('.js-kana').blur(function(){
+    //半角カタカナを全角に
+    var str = $(this).val();
+    $(this).val(convertStr(str));
+    //ひらがなをカタカナに
+    hiraganaToKatagana($(this));
+
+    if($(this).val().match(/.+/)){
+        $(this).next('.error__tx').remove();
+        allCount02 = 1;
+      } else {
+        allCount02 = 0;
+        if($(this).next('p').hasClass('error1')){
+        } else {
+          error1($(this));
+        }
+      }
+  });
+
+  // allCount03：年
+  $('.js-birth1').blur(function(){
+    charactersChange($(this));
+    if($(this).val() == '') {
+        error1($(this));
+        allCount03 = 0;
+      } else if($(this).val().match(/\d{4}/g)) {
+        $(this).next('.error__tx').remove();
+        allCount03 = 1;
+      } else {
+        error2($(this));
+        allCount03 = 0;
+      }
+  });
+
+  // allCount04：月
+  $('.js-birth2').blur(function(){
+    charactersChange($(this));
+    if($(this).val() == '') {
+        error1($(this));
+        allCount04 = 0;
+      } else if($(this).val().match(/\d{1,2}/g)) {
+        $(this).next('.error__tx').remove();
+        allCount04 = 1;
+      } else {
+        error2($(this));
+        allCount04 = 0;
+      }
+  });
+
+  // allCount05：日
+  $('.js-birth3').blur(function(){
+    charactersChange($(this));
+    if($(this).val() == '') {
+        error1($(this));
+        allCount05 = 0;
+      } else if($(this).val().match(/\d{1,2}/g)) {
+        $(this).next('.error__tx').remove();
+        allCount05 = 1;
+      } else {
+        error2($(this));
+        allCount05 = 0;
+      }
+  });
+
+
+  // allCount06：性別
+  $('.sex input').each(function(){
+    if($('.sex input:checked').length == 1) {
+      $('.sex').removeClass('ng error__tx');
+      allCount06 = 1;
+    } else {
+      allCount06 = 0;
+    }
+    if($(this).is(':checked')) {
+      $(this).parent('label').addClass('checked');
     }
   });
 
+  $('.sex label').click(function(){
+    $('.sex').removeClass('ng error__tx');
+    allCount06 = 1;
+
+    $(this).parent().parent('.sex').each(function(){
+      $('.sex label').removeClass('checked');
+    });
+    $(this).addClass('checked');
+  });
+
+  // allCount07： 住所1
+  $('.js-address1').blur(function(){
+    if($(this).val().match(/.+/)){
+        $(this).next('.error__tx').remove();
+        allCount07 = 1;
+      } else {
+        allCount07 = 0;
+        if($(this).next('p').hasClass('error1')){
+        } else {
+          error1($(this));
+        }
+      }
+  });
+
+  // allCount08： 住所2
+  $('.js-address2').blur(function(){
+    if($(this).val().match(/.+/)){
+        $(this).next('.error__tx').remove();
+        allCount08 = 1;
+      } else {
+        allCount08 = 0;
+        if($(this).next('p').hasClass('error1')){
+        } else {
+          error1($(this));
+        }
+      }
+  });
+
+  // allCount09： 住所3
+  $('.js-address3').blur(function(){
+    //半角カタカナを全角に
+    var str = $(this).val();
+    $(this).val(convertStr(str));
+
+    if($(this).val().match(/.+/)){
+        $(this).next('.error__tx').remove();
+        allCount09 = 1;
+      } else {
+        allCount09 = 0;
+        if($(this).next('p').hasClass('error1')){
+        } else {
+          error1($(this));
+        }
+      }
+  });
+
+  // allCount10: 職業
+  $('.job input').each(function(){
+    if($('.job input:checked').length == 1) {
+      $('.job').removeClass('ng error__tx');
+      allCount10 = 1;
+    } else {
+      allCount10 = 0;
+    }
+    if($(this).is(':checked')) {
+      $(this).parent('label').addClass('checked');
+    }
+  });
+
+  $('.job label').click(function(){
+    $('.job').removeClass('ng error__tx');
+    allCount10 = 1;
+    $(this).parent().parent('.job').each(function(){
+      $('.job label').removeClass('checked');
+    });
+    $(this).addClass('checked');
+  });
+
+  // allCount11: 進学希望地域
+  $('.area input').each(function(){
+    if ($(this).attr('checked')) {
+      $(this).parent('label').addClass('checked');
+      allCount11 = 1;
+    }
+  });
+  $('.area label').click(function(){
+    if ($(this).hasClass('checked')) {
+      　$(this).removeClass('checked');
+    } else {
+      $(this).addClass('checked');
+    }
+  });
+  $('.area input').click(function(){
+    if($(this).attr('checked')) {
+      $(this).parent('label').removeClass('checked');
+    } else {
+      $(this).parent('label').addClass('checked');
+    }
+  });
+
+  var checkedCount = $('.area input:checked').length;
+  if(checkedCount == 0) {
+    allCount11 = 0;
+  } else {
+    $('.area').removeClass('ng error__tx');
+    allCount11 = 1;
+  }
+
+  $('.area input').change(function(){
+    checkedCount = $('.area input:checked').length;
+    if(checkedCount == 0) {
+      allCount11 = 0;
+    } else {
+      $('.area').removeClass('ng error__tx');
+      allCount11 = 1;
+    }
+  });
+
+  // allCount12: 電話番号1
+  $('.js-tel1').blur(function(){
+    charactersChange($(this));
+    if($(this).val() == '') {
+        error1($(this));
+        allCount12 = 0;
+      } else if($(this).val().match(/\d{2,5}/g)) {
+        $(this).next('.error__tx').remove();
+        allCount12 = 1;
+      } else {
+        error2($(this));
+        allCount12 = 0;
+      }
+  });
+  // allCount13: 電話番号2
+  $('.js-tel2').blur(function(){
+    charactersChange($(this));
+    if($(this).val() == '') {
+        error1($(this));
+        allCount13 = 0;
+      } else if($(this).val().match(/\d{1,4}/g)) {
+        $(this).next('.error__tx').remove();
+        allCount13 = 1;
+      } else {
+        error2($(this));
+        allCount13 = 0;
+      }
+  });
+  // allCount14: 電話番号3
+  $('.js-tel3').blur(function(){
+    charactersChange($(this));
+    if($(this).val() == '') {
+        error1($(this));
+        allCount14 = 0;
+      } else if($(this).val().match(/\d{4}/g)) {
+        $(this).next('.error__tx').remove();
+        allCount14 = 1;
+      } else {
+        error2($(this));
+        allCount14 = 0;
+      }
+  });
+
+  // allCount15: メールアドレス
+  var $mail = $('.js-form-mail');
+  $mail.blur(function(){
+    if($(this).val() == '') {
+      allCount15 = 0;
+      error1($(this));
+    } else if($(this).val().match(/^[A-Za-z0-9]+[\w\.-]+@[\w\.-]+\.\w{2,}$/)){
+      allCount15 = 1;
+      $(this).next('.error__tx').remove();
+    } else {
+      allCount15 = 0;
+      error2($(this));
+    }
+  });
+
+
   // 英数記号・スペース・ハイフン 全角半角変換
   $(".js-ch-change").blur(function(){
-    console.log('全角を半角にするよ');
     charactersChange($(this));
     $(".js-ch-change").each(function(){
       $(this).val($(this).val().replace(/　/g,' '));
-      $(this).val($(this).val().replace(/ーー━‐―－–−-/g,'-'));
+      $(this).val($(this).val().replace(/[ーー━‐―－–−-]/g,'-'));
     });
   });
 
@@ -123,69 +314,6 @@ $(function() {
         $(ele).val(han);
     }
   }
-
-  // 名前（漢字）
-  $('.js-name').blur(function(){
-    // if($(this).val().match(/^[０-９0-9!-/:-@¥[-`{-~]+$/)) { //数字と記号が入力された場合
-    if($(this).val().match(/[０-９0-9!"#$%&'()\*\+\.,\/:;<=>?@\[\\\]^_`{|}~]/g)) { //数字と記号が入力された場合
-      error2($(this));
-    } else {
-      return false;
-    }
-  });
-
-  // 自動でカナ入力
-  $.fn.autoKana('#js-name-kana', '#js-furigana', {katakana:true});
-
-  // ふりがな（カナ）
-  $('.js-name').keyup(function(){
-    //名前（漢字）を全部消すと連動してカナもきえる
-    //その時の判定
-    if($('.js-kana').val() == ''){
-      console.log('カナがから');
-      $('.js-kana').next('.error__tx').remove();
-    }
-
-  })
-  $('.js-kana').blur(function(){
-    //半角カタカナを全角に（関数）
-    var str = $(this).val();
-    $(this).val(convertStr(str));
-
-    //ひらがなをカタカナに
-    hiraganaToKatagana($(this));
-
-    // error msg
-    // if($(this).val().match(/[\u3041-\u3096\u30A1-\u30F6]/g)) { //ひらがな、カタカナ、ハイフン、スペースの場合
-    //   console.log("ひらがな、カタカナ、ハイフン、スペース");
-    //   return false;
-    // } else if($(this).val() == '') { //カラの場合
-    //   console.log("kara");
-    //   return false;
-    // } else if($(this).val().match(/[０-９0-9!"#$%&'()\*\+\.,\/:;<=>?@\[\\\]^_`{|}~]/g)) { //数字と記号
-    //   console.log('数字と記号 error2追加');
-    //   $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
-    // } else { //それ以外はエラー
-    //   console.log('それ以外error2追加')
-    //   $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
-    // }
-
-    if($(this).val().match(/[Ａ-Ｚａ-ｚA-Za-z０-９0-9!"#$%&'()\*\+\.,\/:;<=>?@\[\\\]^_`{|}~]/g)) { //英数と記号
-      console.log('英数と記号 error2追加');
-      error2($(this));
-    }
-    else if($(this).val().match(/[\u3041-\u3096\u30A1-\u30F6]/g)) { //ひらがな、カタカナ、ハイフン、スペースの場合
-      console.log("ひらがな、カタカナ");
-    } else if($(this).val() == '') { //カラの場合
-      console.log("kara");
-      return false;
-    }  else { //それ以外はエラー
-      console.log('それ以外error2追加')
-      error2($(this));
-    }
-
-
-  });
 
   //半角カタカナを全角に（関数）
   // 変換前
@@ -213,112 +341,8 @@ $(function() {
     }
   }
 
-
-
-  //-mail
-  $mail.blur(function(){
-    if($(this).val() == '') {
-      console.log('mail kara');
-      error1($(this));
-    } else if($(this).val().match(/^[A-Za-z0-9]+[\w\.-]+@[\w\.-]+\.\w{2,}$/)){
-       console.log('メアドの形式正しい');
-      $(this).next('.error__tx').remove();
-    } else {
-       console.log('メアドの形式NG');
-      error2($(this));
-      // $(this).next('.error__tx').remove();
-      // $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
-
-      // if($(this).next('p').hasClass('error__tx')){
-      //   return false;
-      // } else {
-      //   $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
-      // }
-    }
-  });
-
-
-  //- 郵便番号
-  var $pNumber1 = $('.js-automove3');
-  var $pNumber2 = $('.js-automove-after');
-
-  $pNumber1.keyup(function(){
-    charactersChange($(this));
-    if($(this).val().match(/\d{3}/g)) {
-      $pNumber2.focus();
-    }
-  });
-  $pNumber2.focus(function(){
-    if($pNumber1.val().match(/\d{3}/g)){
-      $pNumber1.next('.error__tx').remove();
-    }
-  });
-  $pNumber1.blur(function(){
-    if($(this).val() == '') {
-      error1($(this));
-    } else if($(this).val().match(/\d{3}/g)) {
-      console.log('数字3文字');
-      $(this).next('.error__tx').remove();
-      return false;
-    } else {
-      console.log('数字3文字');
-      error2($(this));
-    }
-  });
-  $pNumber2.blur(function(){
-    if($(this).val().match(/\d{4}/g)) {
-      console.log('数字４文字');
-      $(this).next('.error__tx').remove();
-      return false;
-    } else {
-      console.log('not 数字４文字');
-      error2($(this));
-    }
-  });
-
-  //- 住所
-  var $address1 = $('.js-address1');
-  var $address2 = $('.js-address2');
-  var $address3 = $('.js-address3');
-
-  $address1.blur(function(){
-    if($(this).val().match(/[^ぁ-んー一-龠]/g)){
-      error2($(this));
-    } else {
-      return false;
-    }
-  });
-  $address2.blur(function(){
-    var str = $(this).val();
-    $(this).val(convertStr(str));
-    if($(this).val().match(/[^ぁ-んァ-ンー一-龠]/g)){
-      error2($(this));
-    } else {
-      return false;
-    }
-  });
-
-  //- 電話番号
-  $('.js-tel').blur(function(){
-    charactersChange($(this));
-    $(".js-ch-change").each(function(){
-      $(this).val($(this).val().replace(/　/g,' '));
-      $(this).val($(this).val().replace(/ーー━‐―－–−-/g,'-'));
-    });
-    if($(this).val() == '') {
-      console.log('tel kara');
-      error1($(this));
-    } else if($(this).val().match(/^\d{2,5}-\d{1,4}-\d{4}$/)) { //数字とハイフン
-      console.log('telOK')
-      $(this).next('.error__tx').remove();
-    } else { // 数字、ハイフン、空白以外
-      console.log('tel 数字とハイフンNG')
-      // $(this).next('.error__tx').remove();
-      // $(this).after('<p class="error__tx error2">' + errorTx2 + '</p>');
-      error2($(this));
-    }
-  })
-
+  var errorTx1 = '入力がされていません';
+  var errorTx2 = '入力内容が正しくありません';
 
   //- error1
   function error1(ele) {
@@ -331,4 +355,245 @@ $(function() {
     ele.next('.error__tx').remove();
     ele.after('<p class="error__tx error2">' + errorTx2 + '</p>');
   }
+
+
+  //- submit
+  var submitBtn = $('.fm-parts__btn_submit');
+
+  submitBtn.click(function(e){
+
+    //-- ブラウザバック等で、入力値が維持されている場合
+    //--- allCount01
+    if($('.js-name').val().match(/.+/)){
+        $('.js-name').next('.error__tx').remove();
+        allCount01 = 1;
+      } else {
+        allCount01 = 0;
+        if($('.js-name').next('p').hasClass('error1')){
+        } else {
+          error1($('.js-name'));
+        }
+      }
+    //--- allCount02
+    if($('.js-kana').val().match(/.+/)){
+        $('.js-kana').next('.error__tx').remove();
+        allCount02 = 1;
+      } else {
+        allCount02 = 0;
+        if($('.js-kana').next('p').hasClass('error1')){
+        } else {
+          error1($('.js-kana'));
+        }
+      }
+
+    //--- allCount03
+    if($('.js-birth1').val() == '') {
+        error1($('.js-birth1'));
+        allCount03 = 0;
+      } else if($('.js-birth1').val().match(/\d{4}/g)) {
+        $('.js-birth1').next('.error__tx').remove();
+        allCount03 = 1;
+      } else {
+        error2($('.js-birth1'));
+        allCount03 = 0;
+      }
+    //--- allCount04
+    if($('.js-birth2').val() == '') {
+        error1($('.js-birth2'));
+        allCount04 = 0;
+      } else if($('.js-birth2').val().match(/\d{1,2}/g)) {
+        $('.js-birth2').next('.error__tx').remove();
+        allCount04 = 1;
+      } else {
+        error2($('.js-birth2'));
+        allCount04 = 0;
+      }
+    //--- allCount05
+    if($('.js-birth3').val() == '') {
+        error1($('.js-birth3'));
+        allCount05 = 0;
+      } else if($('.js-birth3').val().match(/\d{1,2}/g)) {
+        $('.js-birth3').next('.error__tx').remove();
+        allCount05 = 1;
+      } else {
+        error2($('.js-birth3'));
+        allCount05 = 0;
+      }
+    //--- allCount07
+    if($('.js-address1').val().match(/.+/)){
+        $('.js-address1').next('.error__tx').remove();
+        allCount07 = 1;
+      } else {
+        allCount07 = 0;
+        if($('.js-address1').next('p').hasClass('error1')){
+        } else {
+          error1($('.js-address1'));
+        }
+      }
+    //--- allCount08
+    if($('.js-address2').val().match(/.+/)){
+        $('.js-address2').next('.error__tx').remove();
+        allCount08 = 1;
+      } else {
+        allCount08 = 0;
+        if($('.js-address2').next('p').hasClass('error1')){
+        } else {
+          error1($('.js-address2'));
+        }
+      }
+    //--- allCount09
+    if($('.js-address3').val().match(/.+/)){
+        $('.js-address3').next('.error__tx').remove();
+        allCount09 = 1;
+      } else {
+        allCount09 = 0;
+        if($('.js-address3').next('p').hasClass('error1')){
+        } else {
+          error1($('.js-address3'));
+        }
+      }
+    //--- allCount12
+    if($('.js-tel1').val() == '') {
+        error1($('.js-tel1'));
+        allCount12 = 0;
+      } else if($('.js-tel1').val().match(/\d{2,5}/g)) {
+        $('.js-tel1').next('.error__tx').remove();
+        allCount12 = 1;
+      } else {
+        error2($('.js-tel1'));
+        allCount12 = 0;
+      }
+    //--- allCount13
+    if($('.js-tel2').val() == '') {
+        error1($('.js-tel2'));
+        allCount13 = 0;
+      } else if($('.js-tel2').val().match(/\d{1,4}/g)) {
+        $('.js-tel2').next('.error__tx').remove();
+        allCount13 = 1;
+      } else {
+        error2($('.js-tel2'));
+        allCount13 = 0;
+      }
+    //--- allCount14
+    if($('.js-tel3').val() == '') {
+        error1($('.js-tel3'));
+        allCount14 = 0;
+      } else if($('.js-tel3').val().match(/\d{4}/g)) {
+        $('.js-tel3').next('.error__tx').remove();
+        allCount14 = 1;
+      } else {
+        error2($('.js-tel3'));
+        allCount14 = 0;
+      }
+    //--- allCount15
+    if($('.js-form-mail').val() == '') {
+      // mailFlag = 0;
+      allCount15 = 0;
+      error1($('.js-form-mail'));
+    } else if($('.js-form-mail').val().match(/^[A-Za-z0-9]+[\w\.-]+@[\w\.-]+\.\w{2,}$/)){
+      // mailFlag = 1;
+      allCount15 = 1;
+      $('.js-form-mail').next('.error__tx').remove();
+    } else {
+      // mailFlag = 0;
+      allCount15 = 0;
+      error2($('.js-form-mail'));
+    }
+
+
+    // 空欄チェック
+    if(allCount01 == 0) {
+      error1($('.js-name'));
+    }
+    if(allCount02 == 0) {
+      error1($('.js-kana'));
+    }
+    if(allCount03 == 0) {
+      if($('.js-birth1').next('p').hasClass('error2')){
+      } else {
+        error1($('.js-birth1'));
+      }
+    }
+    if(allCount04 == 0) {
+      if($('.js-birth2').next('p').hasClass('error2')){
+      } else {
+        error1($('.js-birth2'));
+      }
+    }
+    if(allCount05 == 0) {
+      if($('.js-birth3').next('p').hasClass('error2')){
+      } else {
+        error1($('.js-birth3'));
+      }
+    }
+    if(allCount07 == 0) {
+      error1($('.js-address1'));
+    }
+    if(allCount08 == 0) {
+      error1($('.js-address2'));
+    }
+    if(allCount09 == 0) {
+      error1($('.js-address3'));
+    }
+    if(allCount12 == 0) {
+      if($('.js-tel1').next('p').hasClass('error2')){
+      } else {
+        error1($('.js-tel1'));
+      }
+    }
+    if(allCount13 == 0) {
+      if($('.js-tel2').next('p').hasClass('error2')){
+      } else {
+        error1($('.js-tel2'));
+      }
+    }
+    if(allCount14 == 0) {
+      if($('.js-tel3').next('p').hasClass('error2')){
+      } else {
+        error1($('.js-tel3'));
+      }
+    }
+    if(allCount15 == 0) {
+      if($('.js-form-mail').next('p').hasClass('error2')){
+      } else {
+        error1($('.js-form-mail'));
+      }
+    }
+
+    //性別 allCount06 / 職業 allCount10 / 進学希望地 allCount11
+    //のチェック状況を調べる
+    if(allCount06 == 0) { //NGの場合
+      $('.sex').addClass('ng error__tx');
+    }
+    if(allCount10 == 0) { //NGの場合
+      $('.job').addClass('ng error__tx');
+    }
+    if(allCount11 == 0) { //NGの場合
+      $('.area').addClass('ng error__tx');
+    }
+
+    allCount00 = allCount01 + allCount02 + allCount03 + allCount04 + allCount05 + allCount06 + allCount07 + allCount08 + allCount09 + allCount10 + allCount11 + allCount12 + allCount13 + allCount14 + allCount15;
+
+
+    var submitCheck = 0;
+    if(allCount00 == 15) {// 全部入力値がOKの場合
+      submitCheck = 1;
+    } else {// 入力値がNGの場合
+      submitCheck = 0;
+    }
+
+
+    if (submitCheck == 0) {
+      // errorがあったら
+      //scroll
+      var speed = 400; // ミリ秒
+      var position = $('.error__tx').offset().top;
+      position = position + -50;
+      $('body,html').animate({scrollTop:position}, speed, 'swing');
+
+  	} else if(submitCheck == 1) {
+    	document.webMemberForm.submit();
+    }
+  });
+
 });
